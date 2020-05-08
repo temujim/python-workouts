@@ -26,5 +26,5 @@ Requirements:
     label of x axis, font size 8, demi-bold
 - add y-axis grid
 
-**Calculate the Odds of Getting up to Steps or Higher**
+**Calculate the Odds of Getting up to Steps or Higher**  
 Print the probability of getting up to 60 steps or higher 

@@ -15,7 +15,7 @@ Show the comparison of using print vs return
 2. [Write a fibonacci sequence up to 20 that starts with zero](#Write-a-fibonacci-sequence-up-to-20-that-starts-with-zero)  
 Print each line  
 Apply a different method in simpler printing   
-3. **[Create a fibonacci script that accepts user input on how my items to do and then returns the last fibo digit](#Create-a-fibonacci-script-that-accepts-user-input-on-how-my-items-to-do)<br />**
+3. [Create a fibonacci script that accepts user input on how my items to do and then returns the last fibo digit](#Create-a-fibonacci-script-that-accepts-user-input-on-how-my-items-to-do) 
     Test 1 -- Show values: 1,1,2,3,5,8,13  
     Test 2 -- Show values: 1,2,3,5,8,13
     TODO: ADD EXAMPLE OF VALUES, n and fibo values
