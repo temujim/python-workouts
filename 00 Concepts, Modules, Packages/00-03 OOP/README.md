@@ -3,7 +3,7 @@ Taken from Corey Shafers YT Tutorial
 
 
 1. Create a program with a base class of Employee that can do the following:   
-    * set static variable of employee to 1.04
+    * set static variable of employee raise_amt to 1.04
     * Accept first name, last name, and pay
     * Provides instance variables of first, last and email
     * Returns a function to provide the full name
@@ -30,9 +30,9 @@ Taken from Corey Shafers YT Tutorial
     * Declare the class and instance variables for employees
         * use proper coding for default mutable arugments
     * Define the class methods:
+        * print_emps - takes self as an argument
         * add_emps - use list as an argument
         * remove_emp - use list as an argument
-        * print_emps - takes self as an argument
       * QA the Script:
           * Create instance variable mgr1 for Manager: James Maningo, 1000, employee = dev1, dev
           * print the Manager first name, manager last name, manager email

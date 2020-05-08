@@ -1,6 +1,3 @@
-import sys
-
-
 class Employee:
 
     raise_amt = 1.04
