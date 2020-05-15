@@ -61,3 +61,13 @@ fruits=['orange', 'grape', 'kiwi', 'apple', 'mango', 'fig', 'lemon']
     loop     
     lambda     
     comprehensions     
+
+-----
+Batch 2
+
+1. Read text files using python builtin functions
+2. Read text for each line (read first 3 lines)
+3. Read text files using content managers (read first 5 lines)
+4. Using CSV reader, read flat files
+5. Using CSV reader and with context managers, read flat files
+

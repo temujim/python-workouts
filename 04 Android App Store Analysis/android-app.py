@@ -312,6 +312,11 @@ print(df_reviews.head())
 # Merge `df_review` with `apps` dataframe
 df_apptype_sentiments = apps[['App', 'Type']].merge(df_reviews, left_on='App', right_on='App')
 
+
+# Count the number of na
+print(df_apptype_sentiments['Sentiment_Polarity'].isna().sum())
+
+
 # drop NA values
 df_apptype_sentiments.dropna(how="any", inplace=True)
 print(df_apptype_sentiments.sample(20))

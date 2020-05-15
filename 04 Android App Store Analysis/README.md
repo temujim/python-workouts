@@ -28,7 +28,7 @@ Let's take a look at the data, which consists of two files:
 - [X] Read in Dataset  
 - [X] Drop Duplicates  
 - [X] Print the total number of apps  
-- [X] Have a look at a random sample of 5 rows  
+- [ ] Have a look at a random sample of 5 rows  
 
 ## 2. Data cleaning
 The three features that we will be working with most frequently henceforth are `Installs`, `Size`, and `Price`. A careful glance of the dataset reveals that some of these columns mandate data cleaning in order to be consumed by code we'll write later. Specifically, the presence of special characters (`, $ +`) and letters (`M k`) in the `Installs`, `Size`, and `Price` columns make their conversion to a numerical data type difficult. Let's clean by removing these and converting each column to a numeric type.
@@ -39,6 +39,7 @@ The three features that we will be working with most frequently henceforth are `
 - [X] Loop:
     - [X] Replace each character with an empty String
     - [X] Convert columns to numeric
+- [ ] (TO ADD) Data cleaning: `Rating` col clean, `Size` clean
     
 Note: Take note that "k" is not included, since there's no "k" on size, thus, there's no app with size "k"
 
@@ -66,9 +67,9 @@ From our research, we found that the average volume of ratings across all app ca
 
 **To do:**
 - [X] What is the average rating of all apps
-- [ ] Distribution of apps according to their ratings
-    - [ ] Needs to be an interactive visualization
-    - [ ] Show a vertical dashed line of the average rating in the Viz
+- [X] Distribution of apps according to their ratings
+    - [X] Needs to be an interactive visualization
+    - [X] Show a vertical dashed line of the average rating in the Viz
 
 
 ## 5. Size and price of an app
@@ -103,7 +104,7 @@ Different categories demand different price ranges. Some apps that are simple an
 
 
 **To do:**
-- [X] Plot a strip plot with the x-axis  extending along the `Price` range and y-axies depicting the `Category`
+- [X] Plot a strip plot with the x-axis  extending along the `Price` range and y-axis depicting the `Category`
     - [X] Popular app list are "GAME", "FAMILY", "PHOTOGRAPHY",  "MEDICAL", "TOOLS", "FINANCE", "LIFESTYLE", "BUSINESS"
     - [X] Get the list of Top 6 most popular categories automatically *(not part of DC exercise)*
     - [X] Create a Strip plot
@@ -140,7 +141,7 @@ Are paid apps installed as much as free apps? It turns out that paid apps have a
 
 
 **To do:**
-- [ ] Create an interactive box plot to compare `Paid` vs `Free` downloads
+- [X] Create an interactive box plot to compare `Paid` vs `Free` downloads
 
 
 ## 9. Sentiment analysis of user reviews
@@ -154,6 +155,7 @@ In this notebook, we analyzed over ten thousand apps from the Google Play Store.
 - [X] Create a static box plot between `Paid` and `Free` for a "Sentiment Polarity Distribution"
     - [X] Read `datasets/user_reviews.csv` into a dataframe
     - [X] Merge dataframe with `App` dataframe
+    - [X] Count the na values under 'Sentiment Polarity'
     - [X] Exclude rows with blank values
     - [X] Create a box plot with `Type` on the x-axis and `Sentiment Polarity` on the y-axis
 
