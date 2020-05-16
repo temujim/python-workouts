@@ -1,6 +1,12 @@
 
 # %%---- Import CSV files as python objects
 
+
+# ----------------------------------------------------------------------
+# %% 1. Opening and Exploring the File
+# ----------------------------------------------------------------------
+
+
 from csv import reader as cvr
 
 with open("/home/barca/Python_Workouts/03 Mobile App Profiles/datasets/AppleStore.csv") as file:
@@ -31,7 +37,7 @@ def explore_data(data, start=0, end =5, rows_and_cols=False):
     if rows_and_cols == True:
         print("\n------------------")
         print("Data Shape: ", end='')
-        print(str(len(dataslice)) + ' x ',end='')
+        print(str(len(data)) + ' x ',end='')
         print(len(dataslice[0]))
         print("------------------")
 
@@ -41,6 +47,26 @@ explore_data(iOS, rows_and_cols =True)
 
 # %%
 explore_data(android, rows_and_cols=True)
+
+# ==============
+# %% Col Slicer 
+# ==============
+
+
+def col_slicer(data, colstart=0, colend=1):
+
+    # create list comprehensions to filter columns
+    sliced = [x[colstart:colend] for x in data]
+
+    # output the sliced data 1 per line
+    for row in sliced:
+        print(row)
+
+    print(len(sliced))
+
+
+print(android_header[:4])
+col_slicer(android[:5], 0, 3)
 
 
 # ----------------------------------------------------------------------
@@ -55,6 +81,429 @@ del(android[10472:10473])
 
 # check to see if the row is already deleted
 explore_data(android, 10472,10473, True)
+
+# ----------------------------------------------------------------------
+# %% 3. Removing Duplicate Entries
+# ----------------------------------------------------------------------
+
+print(android_header[:11])
+
+# Find the list of duplicates for 'Instagram'
+for app in android:
+    name = app[0]
+
+    if name == 'Instagram':
+        print(app[:11])
+
+
+# %% todo: Count the total number of duplicates
+#         - Create 2 list:
+
+unique_apps = []
+duplicate_apps = []
+dupe_count = 0
+unique_count = 0
+
+for app in android:
+    name = app[0]
+
+    if name not in unique_apps:
+        unique_apps.append(name)
+        unique_count += 1
+    else:
+        duplicate_apps.append(name)
+        dupe_count += 1
+
+print("Total number of DUPLICATED  apps: " + str(dupe_count))
+print("Total number of UNIQUE apps: "+ str(unique_count))
+
+
+# ********
+# %% todo: Create a dictionary review_max of app names and most number of installs
+
+reviews_max = {}
+
+
+for app in android:
+    name = app[0]
+    reviews = float(app[3])
+
+    if (name not in reviews_max):
+        reviews_max[name] = reviews
+
+    elif reviews > float(reviews_max[name]):
+        reviews_max[name] = reviews
+
+
+# show the list of app counts 
+reviews_max
+
+# check if it shows the highest number of apps
+print(reviews_max['Instagram'])
+
+# count the number of apps
+print(len(reviews_max))
+
+print(android_header[:4])
+col_slicer(android[:5], 0, 4)
+
+# ********
+# %% todo: Create new list of clean apps only
+# ********
+
+clean_apps = []
+listed_apps = []
+
+
+for row in android:
+    name = row[0]
+    reviews = float(row[3])
+
+    if (name not in listed_apps) and (reviews_max[name]==reviews):
+        listed_apps.append(name)
+        clean_apps.append(row)
+        
+        
+# %%
+
+clean_apps[:5]
+
+# %%
+
+print("\n")
+print("=========================")
+print("---- List of Clean Apps")
+print(android_header[:4])
+explore_data(clean_apps, 0, 5, True)
+
+print("\n\n\n=======================")
+print("---- List of Main App list")
+explore_data(android, 0, 5, True)
+
+# len(float)
+
+# %%
+
+# ---
+print("\n\n\n --- Show 5 Columns Only" )
+print(android_header[:5])
+col_slicer(clean_apps[:10], 0, 5)
+
+
+# ----------------------------------------------------------------------
+# %% 4. Remove Non-English Apps
+# ----------------------------------------------------------------------
+
+# clean_apps[0][0]
+# print(ord('_'))
+
+# for char in clean_apps[0][0]:
+#      print(ord(char))
+# 
+# print(chr(126))
+
+# ********
+# %% todo: Write a function to check if there's non english characters
+# ********
+
+def non_english(appname):
+
+    for char in appname:
+
+        if ord(char) > 127:
+            print(char)
+            return False
+    print(char)
+    return True
+
+
+
+# non_english('Test')
+
+non_english('Docs To Go™ Free Office Suite')
+# non_english('爱奇艺PPS -《欢乐颂2》电视剧热播')
+# non_english('Instachat �')
+
+# ********
+# %% todo: Tweak the function to only flag 3 or more than non-english chars
+# ********
+
+def non_englishv2(appname):
+
+    non_eng_count = 0
+
+    for char in appname:
+
+
+        if ord(char) > 127:
+            # print(char)
+            non_eng_count += 1
+            # print(non_eng_count)
+
+    # can be added within the nested if
+    # but saves resources by checking th condition only once
+    if non_eng_count > 3:
+        # print(char)
+        return False
+    else:
+        # print(char)
+        return True
+
+
+# non_english('Test')
+
+# non_englishv2('Docs To Go™ Free Office Suite')
+non_englishv2('爱奇艺PPS -《欢乐颂2》电视剧热播')
+# non_englishv2('Instachat �')
+
+
+# ********
+# %% todo: Segregate apps between non-english and english apps
+# ********
+
+
+english_apps =[]
+non_english_apps = []
+
+# explore_data(clean_apps, 0, 5, True)
+for app in clean_apps:
+    name = app[0]
+
+    if non_englishv2(name):
+        english_apps.append(app)
+    else:
+        non_english_apps.append(app)
+
+
+# %%
+print(len(english_apps))
+print(len(non_english_apps))
+len(english_apps)+len(non_english_apps)
+
+# %%
+
+# explore_data(non_english_apps)
+print("\n\n\n-- List of NonEng Apps")
+print(col_slicer(non_english_apps[:10], 0, 1))
+# print(len(non_english_apps))
+
+# ********
+# %% todo:  iOS English Apsp Only
+# ********
+
+iOS_english = []
+iOS_non_english = []
+
+
+
+# explore_data(clean_apps, 0, 5, True)
+for app in iOS:
+    name = app[1]
+
+    if non_englishv2(name):
+        iOS_english.append(app)
+    else:
+        iOS_non_english.append(app)
+
+
+# %% Double check the filtering
+print(len(iOS_english))
+print(len(iOS_non_english))
+print(len(iOS_english)+len(iOS_non_english))
+print(len(iOS))
+
+
+# ----------------------------------------------------------------------
+# %% 5. Isolate Free Apps
+# ----------------------------------------------------------------------
+
+print(android_header[:8])
+col_slicer(english_apps[:1], 0, 8)
+# android[0][6]
+
+# object type of the price
+type(android[0][7])
+
+# ********
+# %% todo: Android Free Apps
+# ********
+
+
+
+android_free = []
+
+# method filtering by app type
+#for app in english_apps:
+#    type = app[6]
+#    
+#    if type == 'Free':
+#        free_apps.append(app)
+#
+
+
+# method filtering by price
+# thisis the approach used by DQ
+for app in english_apps:
+    price = app[7]
+
+    if price == '0':
+        android_free.append(app)
+
+
+print(len(android_free))
+# col_slicer(free_apps[:100],0, 7)
+
+# *******
+# %% todo: iOS Free Apps
+# *******
+
+iOS_free = []
+
+print(iOS_header)
+explore_data(iOS_english)
+
+for app in iOS_english:
+    price = app[4]
+
+    if price == '0.0':
+        iOS_free.append(app)
+
+
+print(len(iOS_free))
+print(len(iOS))
+
+# ----------------------------------------------------------------------
+# %% 6. Most Common Apps by Genre
+# ----------------------------------------------------------------------
+
+print(android_header)
+explore_data(android)
+
+# %%
+print(iOS_header)
+explore_data(iOS)
+
+# *******
+# %% todo: Method 1: Create a function freq_table
+# *******
+
+
+def freq_table(dataset, index):
+
+    table = {}
+    total = 0
+
+
+    for app in dataset:
+        col = app[index]
+        total += 1
+
+        if col in table:
+            table[col] += 1
+        else:
+            table[col] = 1
+
+
+    # convert table to percentages
+    for cat in table:
+        table[cat] = (table[cat]/total)*100
+
+
+    # print(type(display_table))
+    sorted_cat =  {k:v for k,v in sorted(table.items(), key=lambda item: item[1], reverse=True)}
+
+    for k, v in sorted_cat.items():
+        print("{}: {:.2f}%".format(k, v))
+
+# test function to show the category count
+android_cat = freq_table(android, 1)
+
+
+# ********
+# %% todo: Method 2: Create a display_table function
+# ********
+
+def freq_table2(dataset, index):
+
+    table = {}
+    total = 0
+
+
+    for app in dataset:
+        col = app[index]
+        total += 1
+
+        if col in table:
+            table[col] += 1
+        else:
+            table[col] = 1
+
+
+    # convert table to percentages
+    for cat in table:
+        table[cat] = (table[cat]/total)*100
+
+
+    # print(type(display_table))
+    return table
+
+android_cat2 = freq_table2(android, 1)
+print(android_cat2)
+
+def display_table(dataset, index):
+    table = freq_table2(dataset, index)
+
+    # initiliaize and emply list
+    sorted_tab = []
+
+    # convert the dict to list of tuples
+    for k, v in table.items():
+        sorted_tab.append((v, k))
+
+    # sort the list of tuples
+    sorted_tab = sorted(sorted_tab, reverse=True)
+
+    for i in sorted_tab:
+        print("{}: {:.2f}%".format(i[1], i[0]))
+
+print("\n\n\n")
+display_table(android, 1)
+
+
+# ----------------------------------------------------------------------
+# %% 7. Data Analysis by Geenre for Free Mobile Apps
+# ----------------------------------------------------------------------
+
+
+
+# *******
+# %% todo: `Category` and `Genres` Using freq_table
+# *******
+
+# Android Category Count
+#freq_table(android_free, 1)
+
+print("\n\n\n")
+
+# Android Genre Count
+freq_table(android_free, -4)
+# android_header
+
+
+# ********
+# %% todo: `prime_genre`
+# *******
+
+# examine the header index
+iOS_header
+
+# prime_genre count index_table
+display_table(iOS_free, -5)
+
+
+# ----------------------------------------------------------------------
+# %% 8. App Popularity
+# ----------------------------------------------------------------------
 
 
 

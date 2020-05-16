@@ -55,9 +55,9 @@ This brings us to the following questions:
 We will see that there are `33` unique app categories present in our dataset. _Family_ and *Game* apps have the highest market prevalence. Interestingly, *Tools*, *Business* and *Medical* apps are also at the top.
 
 **To do:**
-- [X] Print the total number of unique categories
-- [X] Count the number of apps in each Category and sort in descending order
-- [X] Create an Interactive Visualization App Count per Category
+- [ ] Print the total number of unique categories
+- [ ] Count the number of apps in each Category and sort in descending order
+- [ ] Create an Interactive Visualization App Count per Category
 
 
 ## 4. Distribution of app ratings
@@ -66,10 +66,10 @@ After having witnessed the market share for each category of apps, let's see how
 From our research, we found that the average volume of ratings across all app categories is `4.17`. The histogram plot is skewed to the right indicating that the majority of the apps are highly rated with only a few exceptions in the low-rated apps.
 
 **To do:**
-- [X] What is the average rating of all apps
-- [X] Distribution of apps according to their ratings
-    - [X] Needs to be an interactive visualization
-    - [X] Show a vertical dashed line of the average rating in the Viz
+- [ ] What is the average rating of all apps
+- [ ] Distribution of apps according to their ratings
+    - [ ] Needs to be an interactive visualization
+    - [ ] Show a vertical dashed line of the average rating in the Viz
 
 
 ## 5. Size and price of an app
@@ -86,13 +86,13 @@ We find that the majority of top rated apps (rating over 4) range from 2 MB to 2
 
 
 **To do:**
-- [X] Ignore python warnings
-- [X] Large Categories Analysis
-    - [X] Only retain apps which belong to a category with 250 or more apps in it.
-    - [X] Creat a jointplot of `Rating` as a function of `Size`
-- [X] Paid App Analysis
-    - [X] Subset `Apps` dataframe to select `Paid` apps only
-    - [X] Creat a jointplot of `Rating` as a function of `Price`
+- [ ] Ignore python warnings
+- [ ] Large Categories Analysis
+    - [ ] Only retain apps which belong to a category with 250 or more apps in it.
+    - [ ] Creat a jointplot of `Rating` as a function of `Size`
+- [ ] Paid App Analysis
+    - [ ] Subset `Apps` dataframe to select `Paid` apps only
+    - [ ] Creat a jointplot of `Rating` as a function of `Price`
    
 
 ## 6. Relation between app category and app price
@@ -104,12 +104,12 @@ Different categories demand different price ranges. Some apps that are simple an
 
 
 **To do:**
-- [X] Plot a strip plot with the x-axis  extending along the `Price` range and y-axis depicting the `Category`
-    - [X] Popular app list are "GAME", "FAMILY", "PHOTOGRAPHY",  "MEDICAL", "TOOLS", "FINANCE", "LIFESTYLE", "BUSINESS"
-    - [X] Get the list of Top 6 most popular categories automatically *(not part of DC exercise)*
-    - [X] Create a Strip plot
-    - [X] Make the chart larger
-- [X] Print the `Category`, `App` and `Price` for apps that are priced above 200
+- [ ] Plot a strip plot with the x-axis  extending along the `Price` range and y-axies depicting the `Category`
+    - [ ] Popular app list are "GAME", "FAMILY", "PHOTOGRAPHY",  "MEDICAL", "TOOLS", "FINANCE", "LIFESTYLE", "BUSINESS"
+    - [ ] Get the list of Top 6 most popular categories automatically *(not part of DC exercise)*
+    - [ ] Create a Strip plot
+    - [ ] Make the chart larger
+- [ ] Print the `Category`, `App` and `Price` for apps that are priced above 200
 
 
 ## 7. Filter out "junk" apps
@@ -118,8 +118,8 @@ It looks like a bunch of the really expensive apps are "junk" apps. That is, app
 Let's filter out these junk apps and re-do our visualization. The distribution of apps under \$20 becomes clearer.
 
 **To do:**
-- [X] From the Popular Categories, select apps which are priced below $100 and assign it to `apps_under_100`
-- [X] Re-plot the strip plot using `apps_under_100` data
+- [ ] From the Popular Categories, select apps which are priced below $100 and assign it to `apps_under_100`
+- [ ] Re-plot the strip plot using `apps_under_100` data
 
 
 
@@ -141,7 +141,7 @@ Are paid apps installed as much as free apps? It turns out that paid apps have a
 
 
 **To do:**
-- [X] Create an interactive box plot to compare `Paid` vs `Free` downloads
+- [ ] Create an interactive box plot to compare `Paid` vs `Free` downloads
 
 
 ## 9. Sentiment analysis of user reviews
@@ -152,10 +152,9 @@ By plotting sentiment polarity scores of user reviews for paid and free apps, we
 In this notebook, we analyzed over ten thousand apps from the Google Play Store. We can use our findings to inform our decisions should we ever wish to create an app ourselves.
 
 **To do:**
-- [X] Create a static box plot between `Paid` and `Free` for a "Sentiment Polarity Distribution"
-    - [X] Read `datasets/user_reviews.csv` into a dataframe
-    - [X] Merge dataframe with `App` dataframe
-    - [X] Count the na values under 'Sentiment Polarity'
-    - [X] Exclude rows with blank values
-    - [X] Create a box plot with `Type` on the x-axis and `Sentiment Polarity` on the y-axis
+- [ ] Create a static box plot between `Paid` and `Free` for a "Sentiment Polarity Distribution"
+    - [ ] Read `datasets/user_reviews.csv` into a dataframe
+    - [ ] Merge dataframe with `App` dataframe
+    - [ ] Exclude rows with blank values
+    - [ ] Create a box plot with `Type` on the x-axis and `Sentiment Polarity` on the y-axis
 
