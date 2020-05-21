@@ -1,5 +1,7 @@
 # Profitable App Profiles for the Mobile Store Markets 
 
+This project aims to analyze a csv file without using Pandas.
+
 Research the specs:
 - Category
 - Free or Paid
@@ -10,7 +12,7 @@ Research the specs:
 - Target Avg Rating
 
 
-The Excercise is taken from DataQuest as a Guided Project
+The Exercise is taken from DataQuest as a Guided Project
 
 * The basics of programming in Python (arithmetical operations, variables, common data types, etc.)
 * List and for loops
@@ -18,6 +20,12 @@ The Excercise is taken from DataQuest as a Guided Project
 * Dictionaries and frequency tables
 * Functions
 * File reader
+
+
+TODO:
+1. [ ] Go through the findings and pattern
+2. [ ] Remove the unncessary scripts
+3. [ ] Clean the Core File for better referene
 
 
 ## 1. Opening and Exploring the File
@@ -87,17 +95,17 @@ To do:
 ## 7. Data Analysis by Genre for Free Mobile Apps
 - Android:
     - [X] freq_table for `Category` & `Genres`
-    - [ ] Most Popular Apps
+    - [X] Most Popular Apps
     - [ ] Pattern
 - iOS:
     - [X] display_table for `prime_genre`
-    - [ ] Most Popular Apps
+    - [X] Most Popular Apps
     - [ ] Pattern
     - 
 
 ## 8. Installs per Category
-- Android: Average Installs per Categoeery
-- iOS: Average Number of Ratings per Category
+- [X] Android: Average Installs per Category
+- [X] iOS: Average Number of Ratings per Category
 
 
 

@@ -62,7 +62,7 @@ def col_slicer(data, colstart=0, colend=1):
     for row in sliced:
         print(row)
 
-    print(len(sliced))
+    print("Total number of rows: " + str(len(sliced)))
 
 
 print(android_header[:4])
@@ -162,8 +162,8 @@ for row in android:
     if (name not in listed_apps) and (reviews_max[name]==reviews):
         listed_apps.append(name)
         clean_apps.append(row)
-        
-        
+
+
 # %%
 
 clean_apps[:5]
@@ -481,12 +481,12 @@ display_table(android, 1)
 # *******
 
 # Android Category Count
-#freq_table(android_free, 1)
+freq_table(android_free, 1)
 
 print("\n\n\n")
 
 # Android Genre Count
-freq_table(android_free, -4)
+# freq_table(android_free, -4)
 # android_header
 
 
@@ -504,6 +504,139 @@ display_table(iOS_free, -5)
 # ----------------------------------------------------------------------
 # %% 8. App Popularity
 # ----------------------------------------------------------------------
+
+
+
+test=freq_table(android_free, 1)
+
+# %%
+# android_header
+
+# android[0][5].replace(',','').replace('+', '')
+# android[0][5]
+# ccol_slicer(android_free[100:120], 5, 6)
+
+# TEST RUNS
+android[0][1]
+type(float(android[0][5].replace(',','').replace('+', '')))
+
+# %%
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# %% TODO: Android Avg Installs Per Category
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+install_count = {}
+android_appcount = {}
+
+for app in android_free:
+    cat = app[1]
+    installs = app[5]
+
+    installs = float(installs.replace(',','').replace('+', ''))
+
+    if cat not in install_count:
+        install_count[cat] = installs
+        android_appcount[cat] = 1
+    else:
+        install_count[cat] += installs
+        android_appcount[cat] += 1
+
+avg_install_perCat = {}
+
+for k in install_count:
+
+    # print("{} - {}".format(k, android_appcount[k]))
+    #print(android_appcount[k])
+
+
+    avg_install_perCat[k] = install_count[k]/android_appcount[k]
+
+print("\n\n")
+
+for cat in avg_installs_sorted:
+    print("{} : {:,.2f}".format(cat[0], cat[1]))
+
+
+# %% --- OUTPUT AVG install per cat
+
+import pprint
+
+pp = pprint.PrettyPrinter()
+pp.pprint(avg_install_perCat)
+avg_installs_sorted = sorted(avg_install_perCat.items(), key = lambda x: x[1], reverse=True)
+
+print("\n\n")
+pp.pprint(avg_installs_sorted)
+
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# %% TODO: iOS Avg Ratings Per Category
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# %%
+# TEST RUN, explore columns for data manipulation
+# print(iOS_header[0:6])
+# col_slicer(iOS[20:30],5, 6)
+
+type(iOS_free[0][5])
+type(iOS_free[0][5]) == str
+
+iOS_header[-5]
+
+
+# %%
+
+# GATHER GENRE_RATING and Category App COunt
+iOS_genre_rating = {}
+iOS_genre_counter = {}
+
+for app in iOS_free:
+    genre = app[-5]
+    rating_total = float(app[5])
+
+
+    if type(rating_total) != float:
+        print(genre)
+
+    #print("{}: {}".format(genre,rating_total))
+
+    if genre in iOS_genre_rating:
+        iOS_genre_rating[genre] += rating_total
+        iOS_genre_counter[genre] += 1
+    else:
+        iOS_genre_rating[genre] = rating_total
+        iOS_genre_counter[genre] = 1
+
+iOS_avg_ratings_perCat = {}
+
+# GENERATE THE AVG RATINGS PER CAT
+for cat in iOS_genre_rating:
+
+    iOS_avg_ratings_perCat[cat] = iOS_genre_rating[cat]/iOS_genre_counter[cat]
+
+iOS_avg_ratings_catsorted =  sorted(iOS_avg_ratings_perCat.items(), key = lambda x: x[1], reverse = True)
+
+
+
+# OUTPUT the AVG RATINGS per CATEGORY for iOS
+for ent in iOS_avg_ratings_catsorted:
+    print("{} : {:,.2f}".format(ent[0], ent[1]))
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
