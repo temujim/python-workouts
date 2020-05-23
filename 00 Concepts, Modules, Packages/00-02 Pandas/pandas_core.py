@@ -1,7 +1,7 @@
 # import pandas fiboworkout 8
 # Planned date: 5/5, executed 5/9
 
-
+# %%
 import pandas as pd
 
 # ********
@@ -10,7 +10,7 @@ import pandas as pd
 
 # %% import data to pandas
 
-brix_df = pd.read_csv("Python_Workouts/00 Concepts, Modules, Packages/00-00 datasets/brics.csv", index_col = 0)
+brix_df = pd.read_csv("/home/barca/Python_Workouts/00 Concepts, Modules, Packages/00-00 datasets/brics.csv", index_col = 0)
 brix_df
 
 # print("test")
@@ -158,6 +158,11 @@ print(d)
 # - - - -
 
 d['col3']
+
+# %%
+
+d['col1']
+
 
 # - - - -
 # %% todo: i-a Query col

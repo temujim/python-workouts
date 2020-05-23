@@ -44,6 +44,51 @@ print(apps.sample(5))
 # print("\n------Rows which contains specific characters")
 # print(apps[apps['Size'].str.contains('M')])
 
+
+# *******
+# %% todo: Filter the column size to show if it constains K or M
+# *******
+
+# first you need to remove nan rows
+apps.dropna(subset=['Size'], inplace=True)
+print("\n ---- Total number of apps after dropping na under Size")
+print(len(apps))
+
+# %%
+apps[apps['Size'].str.contains('K')]
+
+
+# *******
+# %% todo: What are the datatypes of the columns
+# *******
+
+apps.info()
+
+
+
+# -------
+# #%%todo: Convert `Reviews` to int32
+print(apps['Reviews'].dtype)
+apps['Reviews'] = apps['Reviews'].astype('int32')
+print(apps['Reviews'].dtype)
+
+
+# -------
+# %% todo: Convert `Rating` to `float32`
+print(apps['Rating'].dtype)
+apps['Rating'] = apps['Rating'].astype('float32')
+print(apps['Rating'].dtype)
+
+# -------
+# %% todo: Convert `Price` column to float 32
+# apps['Price'].dtype
+# apps['Price'].astype('float32') #this shows error due to non-numeric chars
+
+
+# ********
+# %% todo: Characters to remove and under which columsn
+# ********
+
 # -- List the character to remove
 delchars = [',', '$', '+', 'M', 'k']
 cleancols = ['Size', 'Installs', 'Price']

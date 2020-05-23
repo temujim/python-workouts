@@ -119,7 +119,7 @@ print("Total number of UNIQUE apps: "+ str(unique_count))
 
 
 # ********
-# %% todo: Create a dictionary review_max of app names and most number of installs
+# %% todo: Create a dictionary review_max of app names and most number of reviews
 
 reviews_max = {}
 
@@ -233,8 +233,6 @@ def non_englishv2(appname):
     non_eng_count = 0
 
     for char in appname:
-
-
         if ord(char) > 127:
             # print(char)
             non_eng_count += 1
@@ -276,9 +274,10 @@ for app in clean_apps:
 
 
 # %%
-print(len(english_apps))
-print(len(non_english_apps))
-len(english_apps)+len(non_english_apps)
+print("\n-------------------")
+print("English Android Apps: {:,}".format(len(english_apps)))
+print("Non-english Android Apps: {:,}".format(len(non_english_apps)))
+print("Total number of apps: {:,}".format(len(english_apps)+len(non_english_apps)))
 
 # %%
 
@@ -330,29 +329,39 @@ type(android[0][7])
 
 
 
-android_free = []
 
-# method filtering by app type
-#for app in english_apps:
-#    type = app[6]
-#    
-#    if type == 'Free':
-#        free_apps.append(app)
-#
 
 
 # method filtering by price
 # thisis the approach used by DQ
+android_free = []
+android_paid = []
+
 for app in english_apps:
     price = app[7]
 
     if price == '0':
         android_free.append(app)
+    else:
+        android_paid.append(app)
 
 
 print(len(android_free))
-# col_slicer(free_apps[:100],0, 7)
+print(len(android_paid))
+print(len(android_free)+len(android_paid))
 
+# ~ ~ ~ ~ ~ 
+# %% Extra:
+
+# determine free app has some problematic values in free/type labeling
+for app in android_free:
+    apptype = app[6]
+
+    if apptype != 'Free':
+        print(app)
+
+
+#android_header[6]
 # *******
 # %% todo: iOS Free Apps
 # *******
@@ -470,6 +479,59 @@ print("\n\n\n")
 display_table(android, 1)
 
 
+
+
+# ********
+# %% todo: Method 3
+# ********
+
+
+def pivot_count(dataset, index, percent = False, sort = False):
+    """
+    Default output:
+        - absolute number
+        - output: dictionary
+    Percentage:
+        - converts the output as a percentage of the total number
+        - output: dictionary
+    Sort:
+        - Sorts the output from highest to lowest
+        - output:list
+
+    """
+
+    tally = {}
+    total_counter = 0
+
+
+    for app in dataset:
+        col = app[index]
+        total_counter += 1
+
+
+        if col not in tally:
+            tally[col] = 1
+        else:
+            tally[col] += 1
+
+
+
+    if percent:
+        for key in tally:
+            tally[key] = round((tally[key]/total_counter) * 100, 2)
+
+
+    if sort:
+        tally =  sorted(tally.items(), key = lambda x: x[1], reverse=True)
+
+
+    return tally
+
+
+
+
+# %%
+
 # ----------------------------------------------------------------------
 # %% 7. Data Analysis by Geenre for Free Mobile Apps
 # ----------------------------------------------------------------------
@@ -543,6 +605,7 @@ for app in android_free:
         install_count[cat] += installs
         android_appcount[cat] += 1
 
+# Calcuate the Average Install per Cat
 avg_install_perCat = {}
 
 for k in install_count:
@@ -553,10 +616,17 @@ for k in install_count:
 
     avg_install_perCat[k] = install_count[k]/android_appcount[k]
 
+
+# Sort the output
+avg_installs_sorted = sorted(avg_install_perCat.items(), key = lambda x: x[1], reverse=True)
+
 print("\n\n")
 
 for cat in avg_installs_sorted:
     print("{} : {:,.2f}".format(cat[0], cat[1]))
+
+
+
 
 
 # %% --- OUTPUT AVG install per cat
@@ -565,7 +635,7 @@ import pprint
 
 pp = pprint.PrettyPrinter()
 pp.pprint(avg_install_perCat)
-avg_installs_sorted = sorted(avg_install_perCat.items(), key = lambda x: x[1], reverse=True)
+
 
 print("\n\n")
 pp.pprint(avg_installs_sorted)

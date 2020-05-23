@@ -13,6 +13,12 @@ Datacamp courses are nonlinear in nature contrary to DataQuest. This course is c
 
 Thus, to properly execute the code from scratch, you need the concepts cited above
 
+FiboRuns:
+0 - May 10, 2020 First Completed [main]
+1 - May 15, 2020 Run1 [fibo1]
+2 - May 22, 2020 Run2 [fibo2]
+ 
+
 
 ## 1. Google Play Store apps and reviews
 Mobile apps are everywhere. They are easy to create and can be lucrative. Because of these two factors, more and more apps are being developed. In this notebook, we will do a comprehensive analysis of the Android app market by comparing over ten thousand apps in Google Play across different categories. We'll look for insights in the data to devise strategies to drive growth and retention.
@@ -28,14 +34,18 @@ Let's take a look at the data, which consists of two files:
 - [X] Read in Dataset  
 - [X] Drop Duplicates  
 - [X] Print the total number of apps  
-- [ ] Have a look at a random sample of 5 rows  
+- [X] Have a look at a random sample of 5 rows  
 
 ## 2. Data cleaning
 The three features that we will be working with most frequently henceforth are `Installs`, `Size`, and `Price`. A careful glance of the dataset reveals that some of these columns mandate data cleaning in order to be consumed by code we'll write later. Specifically, the presence of special characters (`, $ +`) and letters (`M k`) in the `Installs`, `Size`, and `Price` columns make their conversion to a numerical data type difficult. Let's clean by removing these and converting each column to a numeric type.
 
 **To do**
 - [X] Filter Column Size to show if it contains 'K' or 'M'
-- [X] List characters to remove
+- [X] What are the datypes of the columns
+    - [X] What is the datatype of `Reviews`, convert to float32
+    - [X] What is the dataype of `Rating`, convert to float32
+    - [X] Try converting the price to float32
+- [X] List characters to remove, and cols to clean
 - [X] Loop:
     - [X] Replace each character with an empty String
     - [X] Convert columns to numeric
@@ -55,9 +65,11 @@ This brings us to the following questions:
 We will see that there are `33` unique app categories present in our dataset. _Family_ and *Game* apps have the highest market prevalence. Interestingly, *Tools*, *Business* and *Medical* apps are also at the top.
 
 **To do:**
-- [ ] Print the total number of unique categories
-- [ ] Count the number of apps in each Category and sort in descending order
-- [ ] Create an Interactive Visualization App Count per Category
+- [X] Print the total number of unique categories
+- [X] Count the number of apps in each Category and sort in descending order
+- [X] Create an Interactive Visualization App Count per Category
+    - [X] Add y & x-axis labels
+    - [X] Add title, set size to 25, color to 'Blue'
 
 
 ## 4. Distribution of app ratings
@@ -66,10 +78,10 @@ After having witnessed the market share for each category of apps, let's see how
 From our research, we found that the average volume of ratings across all app categories is `4.17`. The histogram plot is skewed to the right indicating that the majority of the apps are highly rated with only a few exceptions in the low-rated apps.
 
 **To do:**
-- [ ] What is the average rating of all apps
-- [ ] Distribution of apps according to their ratings
-    - [ ] Needs to be an interactive visualization
-    - [ ] Show a vertical dashed line of the average rating in the Viz
+- [X] What is the average rating of all apps
+- [X] Distribution of apps according to their ratings
+    - [X] Needs to be an interactive visualization
+    - [X] Show a vertical dashed line of the average rating in the Viz
 
 
 ## 5. Size and price of an app
@@ -86,13 +98,13 @@ We find that the majority of top rated apps (rating over 4) range from 2 MB to 2
 
 
 **To do:**
-- [ ] Ignore python warnings
-- [ ] Large Categories Analysis
-    - [ ] Only retain apps which belong to a category with 250 or more apps in it.
-    - [ ] Creat a jointplot of `Rating` as a function of `Size`
-- [ ] Paid App Analysis
-    - [ ] Subset `Apps` dataframe to select `Paid` apps only
-    - [ ] Creat a jointplot of `Rating` as a function of `Price`
+- [X] Ignore python warnings
+- [X] Large Categories Analysis
+    - [X] Only retain apps which belong to a category with 250 or more apps in it.
+    - [X] Creat a jointplot of `Rating` as a function of `Size`
+- [X] Paid App Analysis
+    - [X] Subset `Apps` dataframe to select `Paid` apps only
+    - [X] Create a jointplot of `Rating` as a function of `Price`
    
 
 ## 6. Relation between app category and app price
@@ -104,12 +116,16 @@ Different categories demand different price ranges. Some apps that are simple an
 
 
 **To do:**
-- [ ] Plot a strip plot with the x-axis  extending along the `Price` range and y-axies depicting the `Category`
-    - [ ] Popular app list are "GAME", "FAMILY", "PHOTOGRAPHY",  "MEDICAL", "TOOLS", "FINANCE", "LIFESTYLE", "BUSINESS"
+- [O] Plot a strip plot with the x-axis  extending along the `Price` range and y-axies depicting the `Category`
+    - [X] Popular app list are "GAME", "FAMILY", "PHOTOGRAPHY",  "MEDICAL", "TOOLS", "FINANCE", "LIFESTYLE", "BUSINESS"
     - [ ] Get the list of Top 6 most popular categories automatically *(not part of DC exercise)*
-    - [ ] Create a Strip plot
-    - [ ] Make the chart larger
-- [ ] Print the `Category`, `App` and `Price` for apps that are priced above 200
+    - [X] Create a Strip plot
+        - [X] Make the points easier to see
+        - [X] Add borders to the points
+    - [X] Make the chart larger
+- [X] Print the `Category`, `App` and `Price` for apps that are priced above $200
+    - [X] By using a pandas method
+    - [X] Without using a pandas method
 
 
 ## 7. Filter out "junk" apps
@@ -118,8 +134,8 @@ It looks like a bunch of the really expensive apps are "junk" apps. That is, app
 Let's filter out these junk apps and re-do our visualization. The distribution of apps under \$20 becomes clearer.
 
 **To do:**
-- [ ] From the Popular Categories, select apps which are priced below $100 and assign it to `apps_under_100`
-- [ ] Re-plot the strip plot using `apps_under_100` data
+- [X] From the Popular Categories, select apps which are priced below $100 and assign it to `apps_under_100`
+- [X] Re-plot the strip plot using `apps_under_100` data
 
 
 
@@ -141,7 +157,7 @@ Are paid apps installed as much as free apps? It turns out that paid apps have a
 
 
 **To do:**
-- [ ] Create an interactive box plot to compare `Paid` vs `Free` downloads
+- [X] Create an interactive box plot to compare `Paid` vs `Free` downloads
 
 
 ## 9. Sentiment analysis of user reviews
@@ -152,9 +168,9 @@ By plotting sentiment polarity scores of user reviews for paid and free apps, we
 In this notebook, we analyzed over ten thousand apps from the Google Play Store. We can use our findings to inform our decisions should we ever wish to create an app ourselves.
 
 **To do:**
-- [ ] Create a static box plot between `Paid` and `Free` for a "Sentiment Polarity Distribution"
-    - [ ] Read `datasets/user_reviews.csv` into a dataframe
-    - [ ] Merge dataframe with `App` dataframe
-    - [ ] Exclude rows with blank values
-    - [ ] Create a box plot with `Type` on the x-axis and `Sentiment Polarity` on the y-axis
+- [X] Create a static box plot between `Paid` and `Free` for a "Sentiment Polarity Distribution"
+    - [X] Read `datasets/user_reviews.csv` into a dataframe
+    - [X] Merge dataframe with `App` dataframe
+    - [X] Exclude rows with blank values
+    - [X] Create a box plot with `Type` on the x-axis and `Sentiment Polarity` on the y-axis
 
