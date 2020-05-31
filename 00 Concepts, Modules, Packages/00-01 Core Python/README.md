@@ -35,6 +35,7 @@ https://i.imgur.com/WjO3Hb3.png
 10. [X] [Add zeros to make it consistent in length](#Add-zeros-to-make-it-consistent-in-length.)  
     Limit it to 6 in length   
     Use a function under under the iteration
+    - Implement this using the format method, implemented on fibo9 (created fibo0 as a main reference file)
 11. [X] ***[Provide Error Handling of the "Add Zeros" function](#Return-string-padded-with-zeros-BUT-provide-Error-notifications)   
     Input needs to be string.   
     If value is not string, let user know that values should be in string.  
